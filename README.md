@@ -1,51 +1,37 @@
 # Game engine built with three.js that parses JSON files to set up scenes.
 Expansion of game engine built with Three.js. Implements additional light sources and materials.
 
-<h2 id="sprint-2-objects-sprites-and-point-clouds"><a name="user-content-sprint-2-objects-sprites-and-point-clouds" href="#sprint-2-objects-sprites-and-point-clouds" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint 2: Objects, Sprites and Point Clouds</h2>
+<h2 id="sprint-3-external-meshes-multiple-cameras-animation"><a name="user-content-sprint-3-external-meshes-multiple-cameras-animation" href="#sprint-3-external-meshes-multiple-cameras-animation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint 3: External meshes, multiple cameras, animation</h2>
 <h4 id="cs-4183-video-game-design-cs-4143-dr-david-cline"><a name="user-content-cs-4183-video-game-design-cs-4143-dr-david-cline" href="#cs-4183-video-game-design-cs-4143-dr-david-cline" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CS 4183 : Video Game Design (CS 4143) <br/> Dr. David Cline</h4>
-<p>Three.js has a number of built-in geometries that allow you to create objects without loading external mesh files.  You have already seen a few of these (sphere and cube).  In this sprint, you will add the capability to your engine to make more of the built-in object types.  Additionally, you will add the capability to make sprites and point clouds.</p>
+<p>In this sprint, you will add the capability to load external meshes to your scenes. Another important feature that you will add in this sprint is the ability to store and switch between multiple cameras.  You will also add some animation facilities to your engine by creating general animation scripts.</p>
 <hr />
-<h4 id="sprint-backlog-item-1-adding-more-objects"><a name="user-content-sprint-backlog-item-1-adding-more-objects" href="#sprint-backlog-item-1-adding-more-objects" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 1 - Adding more objects</h4>
+<h4 id="sprint-backlog-item-1-loading-external-meshes"><a name="user-content-sprint-backlog-item-1-loading-external-meshes" href="#sprint-backlog-item-1-loading-external-meshes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 1 - Loading external meshes</h4>
 <ul>
 <li>
-<p>Implement parser function to add different types of built-in objects to your scene, including at least</p>
-<ul>
-<li>Cone</li>
-<li>Cylinder</li>
-<li>Torus</li>
-<li>Plane</li>
-</ul>
+<p>Extend your engine to load external meshes.  In particular, you should be able to load .obj files.</p>
 </li>
 <li>
-<p>Make sure that your engine runs the example file related to the objects, and that all of the material types are supported for the different objects.</p>
+<p>Make sure that your engine runs the example file related to the mesh loading, and that all of the material types are supported for externally loaded meshes.</p>
 </li>
 </ul>
 <hr />
-<h4 id="sprint-backlog-item-2-sprites"><a name="user-content-sprint-backlog-item-2-sprites" href="#sprint-backlog-item-2-sprites" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 2 - Sprites</h4>
+<h4 id="sprint-backlog-item-2-multiple-cameras"><a name="user-content-sprint-backlog-item-2-multiple-cameras" href="#sprint-backlog-item-2-multiple-cameras" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 2 - Multiple cameras</h4>
 <ul>
-<li>Implement parser functions to create sprite objects.  Make sure that your engine can load the example files related to sprites.</li>
+<li>Add the ability to load multiple cameras and switch between them at runtime using scripts. (In theory, you should already be able to load multiple cameras, just not switch between them.)</li>
 </ul>
 <hr />
-<h4 id="sprint-backlog-item-3-point-clouds"><a name="user-content-sprint-backlog-item-3-point-clouds" href="#sprint-backlog-item-3-point-clouds" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 3 - Point clouds</h4>
+<h4 id="sprint-backlog-item-3-animation-paths"><a name="user-content-sprint-backlog-item-3-animation-paths" href="#sprint-backlog-item-3-animation-paths" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 3 - Animation paths</h4>
 <ul>
-<li>Implement parser functions to create point cloud objects.  Make sure that your engine can load the example files related to point clouds.</li>
+<li>Add the ability to animate object properties using linear interpolation at least, and ideally Bezier curves or B-Splines.  You may use Tween.js if you wish.  Decide on your own representation and interpolation scheme. Make sure that you can specify this in the input file, as I will check this.</li>
 </ul>
 <hr />
 <h4 id="sprint-backlog-item-4-new-scenes"><a name="user-content-sprint-backlog-item-4-new-scenes" href="#sprint-backlog-item-4-new-scenes" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Sprint Backlog Item 4 - New Scenes</h4>
 <ul>
 <li>
-<p>Make at least two new scenes that demonstrate the new capabilities of the engine, including objects, sprites, and point clouds.</p>
+<p>Make at least two new scenes that demonstrate the new capabilities of the engine, including loading meshes and switching between multiple cameras, and animating objects.</p>
 </li>
 <li>
-<p>Make an updated version of the game you made in an earlier sprint, or make a new game that is more polished than your first game.  As before, use scripts to control all aspects of the game. Things you might include in this game are:</p>
-<ul>
-<li>Multiple game states</li>
-<li>More interesting objects than just cubes and spheres</li>
-<li>Particle system effects such as explosions, fireworks, or a star field</li>
-<li>A score and restart conditions</li>
-<li>Win/loss conditions</li>
-<li>2D overlays made using CSS and div elements</li>
-</ul>
+<p>Make a scene that includes a car controller.  The car must be made of at least five different pieces (chassis and wheels).  Use a script to control the car so that the wheels turn properly when the car moves.</p>
 </li>
 </ul>
 <hr />
@@ -65,19 +51,16 @@ Expansion of game engine built with Three.js. Implements additional light source
 <h4 id="grade-breakdown"><a name="user-content-grade-breakdown" href="#grade-breakdown" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Grade Breakdown</h4>
 <ul>
 <li>
-<p>Adding more object types: 20%</p>
+<p>External meshes: 20%</p>
 </li>
 <li>
-<p>Adding sprites: 10%</p>
+<p>Switching between multiple cameras: 20%</p>
 </li>
 <li>
-<p>Adding point clouds: 10%</p>
+<p>Animation paths: 20%</p>
 </li>
 <li>
-<p>Making working input scenes that demonstrate the new functionality: 20%</p>
-</li>
-<li>
-<p>Making or updating a simple game: 30%</p>
+<p>Scenes demonstrating the new functionality: 30%</p>
 </li>
 <li>
 <p>Deploying your solution so it is web accessible: 10%</p>
