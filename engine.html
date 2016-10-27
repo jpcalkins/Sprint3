@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+=============================================================================
+CS 4143 GAME ENGINE BASE
+Author: David Cline 
+=============================================================================
+
+Description:
+	For use by students in CS 4143 at Oklahoma State University, Fall 2016.
+	Provides basic code for:
+		- loading several object types
+		- a game loop
+		- keyboard and mouse input
+		- scripting
+
+Running a scene:
+	Scene files are written in JSON, and must be specified as part of the 
+	URL when loading the engine.  If scene0a.json is the relative URL of the
+	scene, then the engine should be started with:
+		.../engine.html?url=scene0a.json
+
+SimpleHTTPServer:
+	Python provides a simple http server that can be used to test files
+	on the local machine (since the file server will likely not work.
+	From the directory that you want to be the root of localhost, 
+	run python with the command:
+		python -m SimpleHTTPServer
+	It should respond with
+		Serving HTTP on 0.0.0.0 port 8000 ...
+	At this point, in your browser, you should be able to access files
+	using the URL
+		http://localhost:8000/
+
+============================================================================= 
+-->
+
+<!-- HTML HEAD TAG -->
+<head>
+<title>CS 4143 Game Engine Base by David Cline</title>
+<meta charset="utf-8">
+
+<!-- CSS THAT DEFINES THE STYLE IN WHICH HTML ELEMENTS WILL BE RENDERED -->
+<style>
+	body {
+		font-family: sans-serif;	/* Tells what font to use by default */
+		background-color: #000;		/* Black background */		
+		color: #fff;				/* White foreground */
+		margin: 0px; 				/* How much space to draw around everything */
+		overflow: hidden;			/* Hides the scroll bar */
+	}
+	#left {
+		color: #fff;				/* White foreground for these #info elements */
+									/* Unspecified background is transparent */
+		opacity: 0.8;				/* opacity of element */
+		position: absolute;			/* #info elements do not flow with document */				
+		left: 5px;					/* left margin */
+		top: 5px;					/* left margin */
+		text-align: left;			/* Text alignment */
+		z-index: 100;				/* High draw order (drawn on top) */
+		display:block;				/* Display elements should be stacked vertically */
+	}
+</style>
+</head>
+
+<!-- ==================================================================== -->
+
+<!-- HTML BODY TAG - TURNS OFF RIGHT CLICK -->
+<body oncontextmenu="return false;">
+
+<!-- DEFINE LEFT DIV TAG - FOR DEBUG PRINTOUTS -->
+<div id="left">
+<pre id="debug"></pre>
+</div>
+
+<!-- INCLUDE SCRIPTS HERE -->
+<script src="three.min.js"></script>
+
+<!-- ==================================================================== -->
+<!-- THE ACTUAL JAVASCRIPT ENGINE CODE -->
+<!-- ==================================================================== -->
+<script src="GameEngine.js"></script>
+
+</body>
+</html>
