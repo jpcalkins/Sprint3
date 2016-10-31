@@ -661,6 +661,19 @@ function parseMesh(jsonNode)
     }else if(geometryType == "sprite"){
         var sprite = new THREE.Sprite(material);
         return sprite;
+    }else if(geometryType == "external"){
+        var loader = new THREE.OBJLoader();
+        // load a resource
+        loader.load(
+            // resource URL
+            jsonNode['objFile'],
+            // Function when resource is loaded
+            function (object) {
+                object.position.z = - 190;
+                object.position.y = -15;
+                currentScene.add(object);
+            }
+        );
     }
     if("MatCap" in jsonNode){
         // modify UVs to accommodate MatCap texture
