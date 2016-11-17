@@ -389,7 +389,7 @@ function parseSceneNode(jsonNode, sceneNode)
                 parseSceneNode(childJsonNode, light);
             }
             else if (childType == "mesh") {
-                var mesh = parseMesh(childJsonNode);
+                var mesh = parseMesh(childJsonNode, sceneNode);
                 sceneNode.add(mesh);
                 parseSceneNode(childJsonNode, mesh);
             }
@@ -589,7 +589,7 @@ function parseSpotLight(jsonNode){
 // PARSE A MESH
 //----------------------------------------------------------------------//
 
-function parseMesh(jsonNode)
+function parseMesh(jsonNode, parentSceneNode)
 {
     //debug("parseMesh\n");
     var height = 2;
@@ -661,19 +661,9 @@ function parseMesh(jsonNode)
     }else if(geometryType == "sprite"){
         var sprite = new THREE.Sprite(material);
         return sprite;
-    }else if(geometryType == "external"){
-        var loader = new THREE.OBJLoader();
-        // load a resource
-        loader.load(
-            // resource URL
-            jsonNode['objFile'],
-            // Function when resource is loaded
-            function (object) {
-                object.position.z = - 190;
-                object.position.y = -15;
-                currentScene.add(object);
-            }
-        );
+    }else if(geometryType.slice(-1) == "j"){
+        parseObj(jsonNode, parentSceneNode);
+        return undefined;
     }
     if("MatCap" in jsonNode){
         // modify UVs to accommodate MatCap texture
@@ -694,6 +684,33 @@ function parseMesh(jsonNode)
     if("receiveShadow" in jsonNode) mesh.receiveShadow = jsonNode["receiveShadow"];
     if("castShadow" in jsonNode) mesh.castShadow = jsonNode["castShadow"];
     return mesh;
+}
+
+function parseObj(jsonNode, parentSceneNode){
+    var material = parseMaterial(jsonNode["material"]);
+    var modelURL = jsonNode["geometry"];
+
+    // Callbacks for different aspects of loading
+    var onLoad = function(mesh) {
+        mesh.traverse(onTraverse);
+        parentSceneNode.add(mesh);
+        parseSceneNode(jsonNode, mesh);
+    };
+    var onTraverse = function (child) {
+        if (child instanceof THREE.Mesh) {
+            child.material = material;
+        }
+    };
+    var onProgress = function (x) {
+        // nothing
+    };
+    var onError = function (x) {
+        debug("Error! could not load " + modelURL);
+    };
+
+    // Load the model using the callbacks previously defined
+    var loader = new THREE.OBJLoader(loadingManager);
+    loader.load(modelURL, onLoad, onProgress, onError);
 }
 
 //----------------------------------------------------------------------//
