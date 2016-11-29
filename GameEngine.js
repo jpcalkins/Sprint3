@@ -683,6 +683,12 @@ function parseMesh(jsonNode, parentSceneNode)
     var mesh = new THREE.Mesh( geometry, material );
     if("receiveShadow" in jsonNode) mesh.receiveShadow = jsonNode["receiveShadow"];
     if("castShadow" in jsonNode) mesh.castShadow = jsonNode["castShadow"];
+    if ("doublesided" in jsonNode) {
+        if (jsonNode["doublesided"]) {
+            mesh.material.side = THREE.DoubleSide;
+        }
+    }
+
     return mesh;
 }
 
